@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:Configs"
+      name = "Configs">
+      <FileRef
+         location = "group:Config-Common-Debug.xcconfig">
+      </FileRef>
+      <FileRef
+         location = "group:Config-Common-Shared.xcconfig">
+      </FileRef>
+      <FileRef
+         location = "group:Config-Common-Release.xcconfig">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:SillyAppKit/SillyAppKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SillyFoundation/SillyFoundation.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SillyBase/SillyBase.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SillyLog/SillyLog.xcodeproj">
+   </FileRef>
+</Workspace>

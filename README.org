@@ -1,0 +1,5 @@
+#+TITLE: Silly Frameworks
+#+DATE: 2022-03-12
+#+STARTUP: showall
+
+Shared code packaged as Frameworks used by various Silly Utility apps.
