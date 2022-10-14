@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0DD25B28EB63F100BBE4CC /* sillylog.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0DD25A28EB63F100BBE4CC /* sillylog.h */; };
+		2C0DD26328EB72A800BBE4CC /* sillylog.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DD26228EB72A800BBE4CC /* sillylog.c */; };
 		2C53EEC5253901E7001A2F27 /* SillyLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C53EEC3253901E7001A2F27 /* SillyLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C53EED325390285001A2F27 /* SLYError.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C53EED125390285001A2F27 /* SLYError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C53EED425390285001A2F27 /* SLYError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C53EED225390285001A2F27 /* SLYError.m */; };
@@ -27,6 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C0DD25128EB62E400BBE4CC /* libsillylog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsillylog.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0DD25A28EB63F100BBE4CC /* sillylog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sillylog.h; sourceTree = "<group>"; };
+		2C0DD26228EB72A800BBE4CC /* sillylog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sillylog.c; sourceTree = "<group>"; };
+		2C0DD26728EB743500BBE4CC /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		2C53EEC0253901E7001A2F27 /* SillyLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SillyLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C53EEC3253901E7001A2F27 /* SillyLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SillyLog.h; sourceTree = "<group>"; };
 		2C53EEC4253901E7001A2F27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,6 +46,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2C0DD24F28EB62E400BBE4CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C53EEBD253901E7001A2F27 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,9 +71,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0DD25928EB630E00BBE4CC /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2C0DD26728EB743500BBE4CC /* config.h */,
+				2C0DD25A28EB63F100BBE4CC /* sillylog.h */,
+				2C0DD26228EB72A800BBE4CC /* sillylog.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		2C53EEB6253901E7001A2F27 = {
 			isa = PBXGroup;
 			children = (
+				2C0DD25928EB630E00BBE4CC /* src */,
 				2C53EEC2253901E7001A2F27 /* SillyLog */,
 				2C809A1A27DD6C5A009F3A22 /* SillyLogTests */,
 				2C53EEC1253901E7001A2F27 /* Products */,
@@ -72,6 +96,7 @@
 			children = (
 				2C53EEC0253901E7001A2F27 /* SillyLog.framework */,
 				2C809A1927DD6C5A009F3A22 /* SillyLogTests.xctest */,
+				2C0DD25128EB62E400BBE4CC /* libsillylog.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +126,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		2C0DD24D28EB62E400BBE4CC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C0DD25B28EB63F100BBE4CC /* sillylog.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C53EEBB253901E7001A2F27 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,6 +147,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		2C0DD25028EB62E400BBE4CC /* sillylog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C0DD25428EB62E400BBE4CC /* Build configuration list for PBXNativeTarget "sillylog" */;
+			buildPhases = (
+				2C0DD24D28EB62E400BBE4CC /* Headers */,
+				2C0DD24E28EB62E400BBE4CC /* Sources */,
+				2C0DD24F28EB62E400BBE4CC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sillylog;
+			productName = sillylog;
+			productReference = 2C0DD25128EB62E400BBE4CC /* libsillylog.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		2C53EEBF253901E7001A2F27 /* SillyLog */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C53EEC8253901E7001A2F27 /* Build configuration list for PBXNativeTarget "SillyLog" */;
@@ -160,6 +210,9 @@
 				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "Silly Utility LLC";
 				TargetAttributes = {
+					2C0DD25028EB62E400BBE4CC = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					2C53EEBF253901E7001A2F27 = {
 						CreatedOnToolsVersion = 11.6;
 					};
@@ -183,6 +236,7 @@
 			targets = (
 				2C53EEBF253901E7001A2F27 /* SillyLog */,
 				2C809A1827DD6C5A009F3A22 /* SillyLogTests */,
+				2C0DD25028EB62E400BBE4CC /* sillylog */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +259,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2C0DD24E28EB62E400BBE4CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C0DD26328EB72A800BBE4CC /* sillylog.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C53EEBC253901E7001A2F27 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +295,32 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2C0DD25228EB62E400BBE4CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2C0DD25328EB62E400BBE4CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		2C53EEC6253901E7001A2F27 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -433,6 +521,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2C0DD25428EB62E400BBE4CC /* Build configuration list for PBXNativeTarget "sillylog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C0DD25228EB62E400BBE4CC /* Debug */,
+				2C0DD25328EB62E400BBE4CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2C53EEBA253901E7001A2F27 /* Build configuration list for PBXProject "SillyLog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
