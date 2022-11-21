@@ -7,24 +7,122 @@
 //
 
 #import "SLYLog.h"
+#import "Config.h"
 
-@implementation SLYLog
-
+@implementation SLYLogItem
 @end
 
-//void _SLYLog(NSString *level, NSString *format, va_list args) NS_FORMAT_FUNCTION(1,0);
+@implementation SLYLogManager
+@end
 
-void _SLYLog(NSString *level, NSString *format, va_list args)
+#if USE_FPRINTF
+#elif USE_SYSLOG
+#include <syslog.h>
+#elif USE_OS_LOG
+#include <os/log.h>
+#elif USE_NSLOG
+#import <Foundation/Foundation.h>
+#else
+#error "No primitive log or print procedure selected"
+#endif
+
+enum {
+    SLYLevelLog = 0,
+    SLYLevelCall,
+    SLYLevelTrace,
+    SLYLevelInfo,
+    SLYLevelWarn,
+    SLYLevelError,
+    SLYLevelFatal,
+};
+
+char * const SLYLevelStr[] = {
+    "", /* no tag for generic log */
+    "[CALL] ",
+    "[TRACE] ",
+    "[INFO] ",
+    "[WARN] ",
+    "[ERROR] ",
+    "[FATAL] ",
+};
+
+#if USE_SYSLOG
+int SLYSysLogLevel[] = {
+    LOG_INFO,                   /* generic */
+    LOG_DEBUG,                  /* call */
+    LOG_DEBUG,                  /* trace */
+    LOG_INFO,                   /* info */
+    LOG_WARNING,                /* warn */
+    LOG_ERR,                    /* error */
+    LOG_CRIT,                   /* fatal */
+};
+#endif
+
+char SLYLogPrefix[] = "SLY ";
+
+void _SLYLogv(int lvl, NSString *fmt, va_list args)
 {
-    NSLog(@"[%@] %@", level,
-        [[NSString alloc] initWithFormat:format arguments:args]);
+    const char *fmtCStr = NULL;
+    NSString *formatted;
+    formatted = [[NSString alloc] initWithFormat:fmt arguments:args];
+    fmtCStr = formatted.UTF8String;
+
+#if USE_FPRINTF
+    fprintf(stderr, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+#elif USE_SYSLOG
+    syslog(SLYSysLogLevel[lvl], "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+#elif USE_OS_LOG
+    switch (lvl) {
+    SLYLevelLog:
+        os_log(OS_LOG_DEFAULT, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+        break;
+    SLYLevelCall:
+        os_log_debug(OS_LOG_DEFAULT, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+        break;
+    SLYLevelTrace:
+        os_log_debug(OS_LOG_DEFAULT, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+        break;
+    SLYLevelInfo:
+        os_log_info(OS_LOG_DEFAULT, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+        break;
+    SLYLevelWarn:
+        os_log_info(OS_LOG_DEFAULT, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+        break;
+    SLYLevelError:
+        os_log_error(OS_LOG_DEFAULT, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+        break;
+    SLYLevelFatal:
+        os_log_fatal(OS_LOG_DEFAULT, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+        break;
+    default:
+        os_log(OS_LOG_DEFAULT, "%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+    }
+#elif USE_NSLOG
+    NSLog(@"%s%s%s", SLYLogPrefix, SLYLevelStr[lvl], fmtCStr);
+#endif
+}
+
+void _SLYLog(int lvl, NSString *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    _SLYLogv(lvl, format, args);
+    va_end(args);
+}
+
+void SLYLog(NSString *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    _SLYLogv(SLYLevelLog, format, args);
+    va_end(args);
 }
 
 void SLYFatal(NSString *format, ...)
 {
     va_list args;
     va_start(args, format);
-    _SLYLog(@"fatal", format, args);
+    _SLYLogv(SLYLevelLog, format, args);
     va_end(args);
 }
 
@@ -32,7 +130,7 @@ void SLYError(NSString *format, ...)
 {
     va_list args;
     va_start(args, format);
-    _SLYLog(@"error", format, args);
+    _SLYLogv(SLYLevelLog, format, args);
     va_end(args);
 }
 
@@ -40,7 +138,7 @@ void SLYWarn(NSString *format, ...)
 {
     va_list args;
     va_start(args, format);
-    _SLYLog(@"warn", format, args);
+    _SLYLogv(SLYLevelLog, format, args);
     va_end(args);
 }
 
@@ -48,7 +146,7 @@ void SLYInfo(NSString *format, ...)
 {
     va_list args;
     va_start(args, format);
-    _SLYLog(@"info", format, args);
+    _SLYLogv(SLYLevelLog, format, args);
     va_end(args);
 }
 
@@ -56,7 +154,7 @@ void SLYTrace(NSString *format, ...)
 {
     va_list args;
     va_start(args, format);
-    _SLYLog(@"trace", format, args);
+    _SLYLogv(SLYLevelLog, format, args);
     va_end(args);
 }
 
@@ -78,7 +176,7 @@ void _SLYTraceCall(
     }
 
     if (formatted)
-        SLYTrace(@"%s %s %d %@", filename, func, line, formatted);
+        _SLYLog(SLYLevelCall, @"%s %s %d %@", filename, func, line, formatted);
     else
-        SLYTrace(@"%s %s %d", filename, func, line);
+        _SLYLog(SLYLevelCall, @"%s %s %d", filename, func, line);
 }

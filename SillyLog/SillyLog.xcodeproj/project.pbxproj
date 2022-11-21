@@ -43,6 +43,8 @@
 		2C809A1927DD6C5A009F3A22 /* SillyLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SillyLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C809A1B27DD6C5A009F3A22 /* SillyLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SillyLogTests.m; sourceTree = "<group>"; };
 		2C809A1D27DD6C5A009F3A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CBEA918292C20A9003C07B4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		2CBEA953292C446B003C07B4 /* Config-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Config-Base.xcconfig"; path = "SillyLog/Config-Base.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		2C53EEB6253901E7001A2F27 = {
 			isa = PBXGroup;
 			children = (
+				2CBEA953292C446B003C07B4 /* Config-Base.xcconfig */,
 				2C0DD25928EB630E00BBE4CC /* src */,
 				2C53EEC2253901E7001A2F27 /* SillyLog */,
 				2C809A1A27DD6C5A009F3A22 /* SillyLogTests */,
@@ -104,6 +107,7 @@
 		2C53EEC2253901E7001A2F27 /* SillyLog */ = {
 			isa = PBXGroup;
 			children = (
+				2CBEA918292C20A9003C07B4 /* Config.h */,
 				2C53EEC3253901E7001A2F27 /* SillyLog.h */,
 				2C53EED125390285001A2F27 /* SLYError.h */,
 				2C53EED225390285001A2F27 /* SLYError.m */,
@@ -372,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -427,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -438,6 +442,7 @@
 		};
 		2C53EEC9253901E7001A2F27 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CBEA953292C446B003C07B4 /* Config-Base.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -461,6 +466,7 @@
 		};
 		2C53EECA253901E7001A2F27 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CBEA953292C446B003C07B4 /* Config-Base.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -484,6 +490,7 @@
 		};
 		2C809A2127DD6C5A009F3A22 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CBEA953292C446B003C07B4 /* Config-Base.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -502,6 +509,7 @@
 		};
 		2C809A2227DD6C5A009F3A22 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CBEA953292C446B003C07B4 /* Config-Base.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;

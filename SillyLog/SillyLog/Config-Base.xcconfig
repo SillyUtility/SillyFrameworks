@@ -1,0 +1,19 @@
+//
+//  Config-Base.xcconfig
+//  SillyLog
+//
+//  Created by Eddie Hillenbrand on 11/21/22.
+//  Copyright © 2022 Silly Utility LLC. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+SUPPORTED_PLATFORMS = macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator
+IPHONEOS_DEPLOYMENT_TARGET = 9.0
+MACOSX_DEPLOYMENT_TARGET = 10.9
+TVOS_DEPLOYMENT_TARGET = 9.0
+WATCHOS_DEPLOYMENT_TARGET = 2.0
+
+LD_RUNPATH_SEARCH_PATHS = @executable_path/Frameworks @executable_path/../Frameworks @loader_path/Frameworks @loader_path/../Frameworks
+

@@ -10,10 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLYLog : NSObject
-
+@interface SLYLogItem : NSObject
 @end
 
+@interface SLYLogManager : NSObject
+@end
+
+void SLYLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 void SLYFatal(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 void SLYError(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 void SLYWarn(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
